@@ -14,7 +14,7 @@ if not use_cuda:
 else:
     print('CUDA is available!  Training on GPU ...')
 
-path = 'app/bacteria'
+path = 'app/bacteria/'
 
 labels_path = path + 'labels.pkl'
 labels_file = open(labels_path, 'rb')
@@ -33,7 +33,7 @@ def load():
        # move tensors to GPU if CUDA is available
        if use_cuda:
          models[i].cuda()
-       models[i].load_state_dict(torch.load(path+'/'+f'bacteria_{i.lower()}.pt',map_location=lambda storage, loc: storage))
+       models[i].load_state_dict(torch.load(path+f'bacteria_{i.lower()}.pt',map_location=lambda storage, loc: storage))
 
 def get_predict(seq):
     
