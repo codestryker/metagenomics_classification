@@ -5,7 +5,7 @@ import sys
 import numpy as np
 import pandas as pd
 import pickle as pkl
-from model import model
+from app.model import model
 
 use_cuda = torch.cuda.is_available()
 
