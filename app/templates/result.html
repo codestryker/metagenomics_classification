@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Taxonomy Predicted</h1>
+  <table style="width:100%">
+    <tr>
+	  {% for header in headings %}
+	   <th>{{ header }}</th>
+	  {% endfor %}
+	</tr>
+	<tr>
+	  {% for cell in data %}
+	   <td> {{ cell }} </td>
+	  {% endfor %}
+	</tr>
+  </table>
+{% endblock %}  
