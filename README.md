@@ -47,3 +47,66 @@ Pipelining process of the deep representation for metagenomic
 classification is divided into four parts. For better understanding here is the image below-
 
 ![GeNet](genet.png)
+
+Dataset-
+Each read is a string of characters (G,T,A,C) varies from organism to organism.
+
+Vector Representation-
+Each read’s character is encoded into the numeric data and that list of of numeric data sequence is converted into 2d array.
+After that we perform normalization and moved to next step.
+
+Learning Process-
+Here GeNet architecture model used for each taxa based on Covolutional Neural Network.
+
+Trained Models-
+Here are eight models taxa+name as a combined result.
+
+## GeNet Model Architecture
+
+GeNet, a model for metagenomic classiﬁcation based on convolutional neural networks. GeNet is trained end-to-end from raw DNA sequences using standard backpropagation with cross-entropy loss.
+
+![GeNet](genet_layer.png)
+
+First layer of model is convolutional 2D neural layer which takes matrix of read as a input.
+
+Resnet Blocks in image are residual block also called ‘skip connections’. They are used to allow gradients to flow through a network directly, without passing through non-linear activation functions. When network depth increase accuracy get saturated and then degrade rapidly to remove that problem 
+here we use residual blocks.
+
+
+Here it’s image below -
+
+![GeNet](resnet.png)
+
+Pooling Layers provide an approach to down sampling feature maps by summarizing the presence of features in patches of the feature map. Two common pooling methods are average pooling and max pooling that summarize the average presence of feature and the most activated presence of a feature respectively. Here is the use of average pooling in model.
+
+Batch Normalization layer normalizes each input channel across a mini-batch. To speed up training of convolutional neural networks and reduce the sensitivity to network initialization.
+
+Relu refers to the Rectifier Unit, the most commonly deployed activation function for the outputs of the CNN neurons. It introduced non-linearity in learning process of model which helps it to learn features more efficiently and make it robust.
+
+Relu is simple to compute therefore is faster than sigmoid function and avoids vanishing gradient problem.
+
+## Approach for High Accuracy
+
+I choose the following hyperparameters to which helped me to reach to the average accuracy of 65% of models.
+
+Fully Connected layers is a feed forward neural networks. The input to the fully connected layer is the ouput from the convolutional layers.
+
+I used three FC layers -
+Layer 1- {768,384}
+Layer 2- {384,768}
+Layer 3- {768,total classes}
+
+I used dropout layer after the first two layers and at the end of residual blocks so each model neuron run effectively by stop learning the some neurons at the probability of 20%.
+
+I choose three FC layers with not much variance in the number of neurons to make it deeper to avoid much widening of layers because wide layers memorize the output and not work as a general model for different data. 
+
+Optimizer is an optimization algorithm that is used to update network weights iterative using training data.
+
+Optimizer Algorithms used-
+Adam
+SGD 
+
+Learning rate is a tuning parameter in an optimization algorithm that deternines the step size at each iteration while moving toward a minimum of a loss function.
+
+I used 0.001 and 0.0001 as a learning rate iteratively. 
+Training approach-
