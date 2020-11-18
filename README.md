@@ -46,4 +46,4 @@ Data files are in Data folder.
 Pipelining process of the deep representation for metagenomic 
 classification is divided into four parts. For better understanding here is the image below-
 
-![Screenshot](screenshot.png)
+![GeNet](genet.png)
