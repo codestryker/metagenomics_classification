@@ -1,6 +1,8 @@
 # Metagenomic Classification
 
-It is a research project on metagenomics classification based on deep learning.
+It is a research internship project of Bayes Labs based on deep learning for metagenomic classification.
+It's link of web app- https://metagenomics-classifier.herokuapp.com/
+
 
 This project aims to build a inference engine which is a GeNet deep representation for Metagenomics Classification based on this research paper(https://arxiv.org/pdf/1901.11015.pdf) to replace the Kraken and Centrifuge DNA classification methods which
 requires large database that makes them unaffordable untransferable and become challenging when the amount of noise in data increases. To counter these problems Deep learning systems is required that can learn from the noise distribution of the input reads.
@@ -44,3 +46,4 @@ Data files are in Data folder.
 Pipelining process of the deep representation for metagenomic 
 classification is divided into four parts. For better understanding here is the image below-
 
+![Screenshot](screenshot.png)
