@@ -154,4 +154,4 @@ I take a DNA reads to get the combined result as taxonomy prediction.
 
 All taxas are predicted correctly for above DNA read.
 
-Code is written for Bacteria Kingdom only as a sub project and remaining Kingdoms models can be build according to above procedure.
+Code is written for Bacteria Kingdom only as a sub project and remaining Kingdoms models can be build according to the above procedure.
