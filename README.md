@@ -1,6 +1,7 @@
 # Metagenomic Classification
 
 It is a research internship project of Bayes Labs based on deep learning for metagenomic classification.
+
 It's link of web app- https://metagenomics-classifier.herokuapp.com/
 
 
@@ -110,3 +111,47 @@ Learning rate is a tuning parameter in an optimization algorithm that deternines
 
 I used 0.001 and 0.0001 as a learning rate iteratively. 
 Training approach-
+
+![adam](adam.png)
+
+Above Graph is showing hikes in graph by at the time of Adam optimizer training the model with learning rate of 0.001.
+
+![sgd](sgd.png)
+
+Above Graph showing the down slope at the time SGD optimizer training the model with learning rate of 0.001
+
+Step 1- I started training with SGD optimizer and learning rate of 0.001 because SGD(Stochastic Gradient Descent) select a few sample from whole data randomly for each iteration due to which it perform many iterations and give time to learn model slowly with 0.001 learning rate helps to move the global minima which is closer to the correct prediction of input.
+
+Step 2-After training with 0.001 learning rate I train it with 0.0001 learning rate to learn more slowly and learn more features and slowly gradient moves toward global minima.
+
+Step 3- In this step I change the SGD optimizer with Adam because which is a combination of RMSprop and Stochastic Gradient Descent with momentum. It uses the squared gradients to scale the learning rate like RMSprop and it takes advantage of momentum by using moving average of the gradient instead of gradient like SGD with momentum.
+Adam perform fast convergence than SGD with learning rate of
+0.001  moves the model toward global minima.
+This steps sometimes increase the accuracy abruptly.
+
+Step 4- Repeat the above step until get the high accuracy. 
+
+Freezing and Unfreezing method improves the accuracy of the model further by 3 to 4%.
+I freeze the previous layers of the models and truncate the last classification layer and add new two new FC layer{768,384} and {384,192} with classification layer at last {192,total classes}.
+
+## Models Evaluation
+
+I am using test data set of 875 rows to evaluate the combined result of all models with accuracy.
+
+
+![accuracy](accuracy.png)
+
+Here overall accuracy is not going above 28% because of small dataset and number of rows which has all taxas predicted correctly are less. It can only be improved by using large data set and train models again.  
+
+## Inference Output
+
+I take a DNA reads to get the combined result as taxonomy prediction.
+
+'GATGAACGCTGGCGGCGTGCCTAACACATGCAAGTCGAGCGGAGTTTAACTGGAAGCACTTGTGCGACCGGATAAACTTAGCGGCGGACGGGTGAGTAACACGTGAGCAACCTACCTATCGCAGGGGAACAACATTGGGAAACCAGTGCTAATACCGCATAACATCTTTTGGGGGCATCCCCGGAAGATCAAAGGATTTCGATCCGGCGACAGATGGGCTCGCGTCCGATTAGCTAGTTGGTAAGGTAAAAGCTTACCAAGGCAACGATCGGTAGCCGAACTGAGAGGTTGATCGGCCACATTGGGACTGAGACACGGCCCAGGCTCCTACGGGAGGCAGCAGTGGGGAATATTGGGCAATGGGGGAAACCCTGACCCAGCAACGCCGCGTGAAGGAAGAAGGCCTTCGGGTTGTAAACTTCTTTGATCAGGGACGAAACAAATGACGGTACCTGAAGAACAAGTCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGACAAGCGTTATCCGGATTTACTGGGTGTAAAGGGCGTGTAGGCGGTTTCGTAAGTTGGATGTGAAATTCTCAGGCTTAACCTGAGAGGGTCATCCAAAACTGCAAAACTTGAGTACTGGAGAGGATAGTGGAATTCCTAGTGTAGCGGTAAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGACTATCTGGACAGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAATACTAGGTGTAGGGGGTATCGACCCCCCCTGTGCCGCAGCTAACGCAATAAGTATTCCACCTGGGGAGTACGACCGCAAGGTTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCAGTGGAGTATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGGCTTGACATCCTCTGACGGCTGTAGAGATACAGCTTTCCCTTCGGGGACAGAGAGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATGGTCAGTTGCCAGCACGTAATGGTGGGCACTCTGGCAAGACTGCCGTTGATAAAACGGAGGAAGGTGGGGACGACGTCAAATCATCATGCCCCTTATGTCCTGGGCTACACACGTACTACAATGGCAACAACAGAGGGCAGCCAGGTCGCGAGGCCGAGCGAATCCCAAAATGTTGTCTCAGTTCAGATTGCAGGCTGCAACTCGCCTGCATGAAGTCGGAATTGCTAGTAATGGCAGGTCAGCATACTGCCGTGAATACGTTCCCGGGTCTTGTACACACCGCCCGTCACACCATGAGAGTTTGTAACACCCGAAGTCAGTAGTCTGACCGTAAGGAGGGCGCTGCCGAAGGTGGGACAGATAATTGGGGTG’
+
+
+![output](output.png)
+
+All taxas are predicted correctly for above DNA read.
+
+Code is written for Bacteria Kingdom only as a sub project and remaining Kingdoms models can be build according to above procedure.
