@@ -1,6 +1,6 @@
 # Metagenomic Classification
 
-It is a research paper based internship project of Bayes Labs based on deep learning for metagenomic classification.
+It is a research paper based internship project of Bayes Labs based on deep learning and have a backend support of Flask for metagenomic classification.
 
 It's link of web app- https://metagenomics-classifier.herokuapp.com/
 
